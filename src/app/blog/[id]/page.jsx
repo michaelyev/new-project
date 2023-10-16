@@ -4,12 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 async function getData(id) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
     cache: "no-store",
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error(id);
   }
 
   return res.json();
@@ -18,17 +18,17 @@ async function getData(id) {
 const BlogId = async ({params}) => {
   
   const data = await getData(params.id)
-
+  console.log(params.id)
   return (
 
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>{data.body}</p>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.author}>
             <Image
-              src={data.img}
+              src={data.image}
               alt=""
               width={40}
               height={40}
@@ -38,7 +38,7 @@ const BlogId = async ({params}) => {
           </div>
         </div>
         <div className={styles.imageContainer}>
-          <Image src={data.img} alt="" fill={true} className={styles.image} />
+          <Image src={data.image} alt="" fill={true} className={styles.image} />
         </div>
       </div>
       <div className={styles.content}>
