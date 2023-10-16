@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 async function getData() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts',
+  const res = await fetch('http://localhost:3000/api/posts',
   { cache: 'no-store'}
   )
 
@@ -20,10 +20,10 @@ const  Blog = async () => {
   return (
     <div className={styles.mainContainer}>
       {data.map((item) => (
-        <Link href={`blog/${item.id}`} className={styles.container} key="1">
+        <Link href={`blog/${item._id}`} className={styles.container} key="1">
           <div className={styles.imageContainer}>
             <Image
-              src="https://img.freepik.com/free-photo/paper-people-chain-on-green-grass-unity-concept_632805-35.jpg?w=1380&t=st=1685890833~exp=1685891433~hmac=46f15c2161ca525e238313ec9dc0812864411c64035b664d7abecd75e33494e1"
+              src={item.image}
               alt=""
               width={400}
               height={250}
@@ -32,7 +32,7 @@ const  Blog = async () => {
           </div>
           <div className={styles.content}>
             <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>description</p>
+            <p className={styles.desc}>{item.desc}</p>
           </div>
         </Link>
       ))}

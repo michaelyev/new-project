@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
     try {
-        //await connect()
-        //const posts = await Post.find()
-        return new NextResponse('Error in wwwwww', {status: 200})
+        await connect()
+        const posts = await Post.find()
+        return new NextResponse(JSON.stringify(posts), {status: 200})
 
     }
     catch (error) {
