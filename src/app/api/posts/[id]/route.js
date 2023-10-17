@@ -4,9 +4,10 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request, {params}) => {
     const id = params
+    console.log(params)
     try {
         await connect()
-        const posts = await Post.findById(id)
+        const posts = await Post.findById(params.id)
         return new NextResponse(JSON.stringify(posts), {status: 200})
 
     }

@@ -9,16 +9,27 @@ async function getData(id) {
   });
 
   if (!res.ok) {
-    throw new Error(id);
+    throw new Error(id)
   }
 
   return res.json();
 }
 
+
+export async function generateMetadata ({params}) {
+  const post = await getData(params.id)
+  return {
+    title: post.title,
+    description: post.desc
+  }
+}
+
+
+
+
 const BlogId = async ({params}) => {
   
   const data = await getData(params.id)
-  console.log(params.id)
   return (
 
     <div className={styles.container}>
