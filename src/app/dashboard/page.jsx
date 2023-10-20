@@ -1,10 +1,13 @@
 'use client'
 
+import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 import useSWR from 'swr'
 
 
 const page = () => {
+  const session = useSession()
+  console.log(session)
   /* const [data, setData] = useState([])
   const [error, setError] = useState(false)
   const [loading, isLoading] = useState(true)
